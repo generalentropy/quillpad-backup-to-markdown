@@ -11,7 +11,7 @@ export default function Footer() {
 
           <div className="flex items-center space-x-4">
             <a
-              href="https://github.com/votre-repo"
+              href="https://github.com/generalentropy/quillpad-backup-to-markdown"
               className="flex items-center space-x-2 text-slate-600 transition-colors hover:text-slate-900"
               target="_blank"
               rel="noopener noreferrer"
@@ -21,7 +21,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://github.com/votre-repo/issues/new"
+              href="https://github.com/generalentropy/quillpad-backup-to-markdown/issues"
               className="flex items-center space-x-2 text-slate-600 transition-colors hover:text-slate-900"
               target="_blank"
               rel="noopener noreferrer"
