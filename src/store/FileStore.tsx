@@ -1,15 +1,10 @@
 import { create } from "zustand";
-
-interface FileStore {
-  file: File | null;
-  setFile: (file: File | null) => void;
-  extractedData: JSON | null;
-  setExtractedData: (file: JSON | null) => void;
-}
+import { FileStore } from "../types/types";
 
 export const useFileStore = create<FileStore>((set) => ({
   file: null,
   setFile: (file) => set({ file }),
-  extractedData: null,
-  setExtractedData: (extractedData) => set({ extractedData }),
+  sortByNotebookName: false,
+  setSortByNotebookName: () =>
+    set((state) => ({ sortByNotebookName: !state.sortByNotebookName })),
 }));

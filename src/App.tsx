@@ -1,6 +1,7 @@
 import FileDropZone from "./components/FileDropZone";
 import Header from "./components/Header";
 import Info from "./components/Info";
+import Options from "./components/Options";
 import ProcessButton from "./components/ProcessButton";
 
 export function App() {
@@ -9,6 +10,7 @@ export function App() {
       <Header />
       <Info />
       <FileDropZone />
+      <Options />
       <ProcessButton />
     </div>
   );

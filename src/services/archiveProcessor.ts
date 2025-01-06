@@ -13,35 +13,28 @@ import JSZip from "jszip";
 export async function extractZip(zipFile: File) {
   const zip = new JSZip();
 
-  // Charger le fichier ZIP
   const zipContent = await zip.loadAsync(zipFile);
 
-  let jsonContent = null;
-  const mediaFiles = new Map(); // Pour stocker les fichiers du dossier "media"
+  let notes = null;
+  const mediaFiles = new Map();
 
-  // Parcourir les fichiers/dossiers dans le ZIP
   for (const fileName in zipContent.files) {
     const fileData = zipContent.files[fileName];
 
     if (!fileData.dir) {
-      // Si c'est un fichier JSON
       if (fileName.endsWith(".json")) {
         const jsonString = await fileData.async("string");
-        jsonContent = JSON.parse(jsonString); // Parser le JSON
-      }
-      // Si c'est un fichier dans le dossier "media/"
-      else if (fileName.startsWith("media/")) {
+        notes = JSON.parse(jsonString);
+      } else if (fileName.startsWith("media/")) {
         const fileBlob = await fileData.async("blob");
-        mediaFiles.set(fileName, fileBlob); // Ajouter le fichier à la Map
+        mediaFiles.set(fileName, fileBlob);
       }
     }
   }
 
-  if (!jsonContent) {
-    throw new Error("Fichier JSON introuvable dans le ZIP.");
+  if (!notes) {
+    throw new Error("No JSON found");
   }
 
-  console.log({ jsonContent, mediaFiles });
-
-  return { jsonContent, mediaFiles };
+  return { notes, mediaFiles };
 }

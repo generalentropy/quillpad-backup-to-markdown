@@ -7,6 +7,7 @@ import clsx from "clsx";
 const FileDropZone: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
   const setFile = useFileStore((state) => state.setFile);
+
   const file = useFileStore((state) => state.file);
   const [error, setError] = useState<string | null>(null);
 
