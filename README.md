@@ -1,50 +1,100 @@
-# React + TypeScript + Vite
+# Quillpad JSON Backup to Markdown
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/512d7934-0b10-47e5-925f-582e6fa620ae/deploy-status)](https://app.netlify.com/sites/quillpad-backup-to-markdown/deploys)
 
-Currently, two official plugins are available:
+Since Quillpad does not allow exporting in its native format and only offers the option to export a single zip archive containing a global JSON file, this tool allows you to convert the archive into a collection of `.md` files. This enables you to transfer your notes to other applications such as Obsidian, Typora, Logseq, and more.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Convert Notes:** Transforms each note into an individual `.md` file.
+- **Handle Duplicate Titles:** Manages cases where multiple notes have similar or identical titles.
+- **Automatic Filename Generation:** Generates a file name automatically if a note does not provide a title.
+- **Maintain Notebook Organization:** Preserves the "notebook" structure by converting each notebook into a separate folder.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Usage Options
 
-- Configure the top-level `parserOptions` property like this:
+You can use **Quillpad JSON Backup to Markdown** in two ways:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 1. Use the Online Version
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Easily convert your backups without installing anything by visiting our [online tool](https://quillpad-backup-to-markdown.visualartisan.fr).
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### 2. Use Locally on Your Machine
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+#### Prerequisites
+
+- **Node.js:** Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+#### Installation
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/quillpad-backup-to-markdown.git
+   ```
+
+2. **Navigate to the Project Directory:**
+
+   ```bash
+   cd quillpad-backup-to-markdown
+   ```
+
+3. **Install Dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+#### Running the Application
+
+1. **Start the Development Server:**
+
+   ```bash
+   npm run dev
+   ```
+
+   This will start the application in development mode. Open [http://localhost:5173/](http://localhost:5173/) in your browser to view it.
+
+2. **Build for Production:**
+
+   ```bash
+   npm run build
+   ```
+
+   This command compiles the application for production, optimizing the build for the best performance.
+
+3. **Preview the Production Build:**
+
+   ```bash
+   npm run preview
+   ```
+
+   Locally preview the production build to ensure everything works as expected.
+
+#### Using the Application
+
+1. **Upload Your Quillpad Backup:**
+   - Click on the upload area to select your Quillpad backup zip archive containing the single JSON file.
+
+2. **Convert and Download:**
+   - Click the **"Convert and Download"** button.
+   - The archive will be processed automatically, and the download of the converted Markdown files will start immediately.
+
+3. **Access Your Markdown Files:**
+   - Once the download is complete, navigate to your designated download folder to find your notes organized as Markdown files in separate folders.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+## License
+
+This project is licensed under the [AGPL-3.0 license](LICENSE).
+
+## Contact
+
+For any questions or suggestions, feel free to open an issue.
+
+---
+
+*Transform your Quillpad exports into a more flexible and accessible Markdown format with ease!*
