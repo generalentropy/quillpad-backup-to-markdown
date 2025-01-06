@@ -25,7 +25,7 @@ const FileDropZone: React.FC = () => {
   return (
     <div
       {...getRootProps()}
-      className="bg-white/30 p-24 border-2 border-dashed border-blue-500 rounded-3xl cursor-pointer"
+      className="cursor-pointer rounded-3xl border-2 border-dashed border-blue-500 bg-white/30 p-24"
     >
       <input {...getInputProps()} />
       {file ? (
