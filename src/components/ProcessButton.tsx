@@ -3,20 +3,28 @@ import { useFileStore } from "../store/FileStore";
 import { extractZip } from "../services/archiveProcessor";
 import { useState } from "react";
 import { RiLoader4Fill } from "react-icons/ri";
-import { generateMarkdownFiles } from "../services/markdownGenerator";
-import { generateZip } from "../services/zipGenerator";
+import { generateMarkdownFiles } from "../services/generateMarkdownFiles";
+import { generateArchiveWithFolders } from "../services/generateArchiveWithFolders";
+import { generateArchive } from "../services/generateArchive";
 
 export default function ProcessButton() {
   const [isProcessing, setIsProcessing] = useState(false);
   const file = useFileStore((state) => state.file);
+  const sortByFolders = useFileStore((state) => state.sortByNotebookName);
 
   const handleClick = async () => {
     setIsProcessing(true);
     if (!file) return;
 
-    const { notes } = await extractZip(file);
-    const notesArray = generateMarkdownFiles(notes);
-    generateZip(notesArray);
+    // Extract notes, notebooks and media from the ZIP
+    const { data } = await extractZip(file);
+    const mdNotesArray = generateMarkdownFiles(data);
+
+    if (sortByFolders) {
+      await generateArchiveWithFolders(mdNotesArray, data.notebooks);
+    } else {
+      await generateArchive(mdNotesArray);
+    }
 
     setIsProcessing(false);
   };

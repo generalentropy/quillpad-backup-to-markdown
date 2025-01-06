@@ -14,7 +14,7 @@ export type Attachment = {
 export type Note = {
   title: string;
   content: string;
-  attachments: Attachment[];
+  attachments?: Attachment[];
   notebookId: number;
   notebookName?: string | null;
 };
@@ -32,4 +32,10 @@ export interface JSONFile {
 export interface TextFile {
   name: string;
   content: string;
+  notebookId: number | null;
+}
+
+export interface Data {
+  notes: Note[];
+  notebooks: Notebook[];
 }

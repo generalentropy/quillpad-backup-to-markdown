@@ -1,22 +1,24 @@
 import JSZip from "jszip";
-import { TextFile } from "../types/types";
-import { v4 as uuidv4 } from "uuid";
+import { Notebook, TextFile } from "../types/types";
 import { getFormattedDate } from "../utils/helpers";
+import { v4 as uuidv4 } from "uuid";
 
-/**
- * Create a ZIP file from a list of Markdown files.
- *
- * @param {TextFile[]} markdownFiles - An array of objects with filename and content.
- * @returns {Promise<void>} - A promise that resolves when the ZIP file is downloaded.
- */
-export async function generateArchive(
+export async function generateArchiveWithFolders(
   markdownFiles: TextFile[],
+  notebooks: Notebook[],
 ): Promise<void> {
   const zip = new JSZip();
 
-  // Add each Markdown file to the ZIP
-  markdownFiles.forEach(({ name, content }) => {
-    zip.file(name, content);
+  // Organize files into folders based on their notebook
+  markdownFiles.forEach(({ name, content, notebookId }) => {
+    const folderName = notebooks.find((nb) => nb.id === notebookId)?.name;
+    if (folderName) {
+      // Add file to the appropriate folder
+      zip.folder(folderName)?.file(name, content);
+    } else {
+      // Add file to the root if no notebook is found
+      zip.file(name, content);
+    }
   });
 
   // Generate the ZIP file as a Blob

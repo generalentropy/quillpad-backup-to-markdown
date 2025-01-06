@@ -15,7 +15,7 @@ export default function Options() {
           onChange={setSortByNotebookName}
           className="mx-2 cursor-pointer"
         />
-        Create a folder for each "Notebook" in Quillpad and organize the note ?
+        Create a separate folder for each notebook in Quillpad ?
       </label>
     </div>
   );
