@@ -4,7 +4,6 @@ import { extractZip } from "../services/archiveProcessor";
 import { useState } from "react";
 import { RiLoader4Fill } from "react-icons/ri";
 import { generateMarkdownFiles } from "../services/generateMarkdownFiles";
-import { generateArchiveWithFolders } from "../services/generateArchiveWithFolders";
 import { generateArchive } from "../services/generateArchive";
 
 export default function ProcessButton() {
@@ -16,15 +15,10 @@ export default function ProcessButton() {
     setIsProcessing(true);
     if (!file) return;
 
-    // Extract notes, notebooks and media from the ZIP
     const { data } = await extractZip(file);
     const mdNotesArray = generateMarkdownFiles(data);
 
-    if (sortByFolders) {
-      await generateArchiveWithFolders(mdNotesArray, data.notebooks);
-    } else {
-      await generateArchive(mdNotesArray);
-    }
+    await generateArchive(mdNotesArray, data.notebooks, sortByFolders);
 
     setIsProcessing(false);
   };

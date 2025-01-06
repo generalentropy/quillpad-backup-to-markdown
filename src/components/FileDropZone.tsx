@@ -35,7 +35,7 @@ const FileDropZone: React.FC = () => {
     <div
       {...getRootProps()}
       className={clsx(
-        "flex h-full max-h-[300px] w-full max-w-[600px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 bg-white/30 transition-colors",
+        "flex h-full max-h-[300px] min-h-[200px] w-full max-w-[600px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 bg-white/30 transition-colors",
         { "bg-blue-400/20": isHovered },
       )}
     >
