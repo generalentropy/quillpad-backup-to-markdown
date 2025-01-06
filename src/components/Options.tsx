@@ -7,7 +7,7 @@ export default function Options() {
   );
 
   return (
-    <div className="mt-4 flex select-none font-semibold text-gray-600">
+    <div className="mt-4 flex select-none justify-center px-1 text-center font-semibold text-gray-600">
       <label>
         <input
           type="checkbox"

@@ -32,27 +32,29 @@ const FileDropZone: React.FC = () => {
   const { getRootProps, getInputProps } = useDropzone(options);
 
   return (
-    <div
-      {...getRootProps()}
-      className={clsx(
-        "flex h-full max-h-[300px] min-h-[200px] w-full max-w-[600px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 bg-white/30 transition-colors",
-        { "bg-blue-400/20": isHovered },
-      )}
-    >
-      <input {...getInputProps()} />
-      {file ? (
-        <div className="flex flex-col">
-          <p>
-            Your file : <strong>{file.name}</strong>
-          </p>
-        </div>
-      ) : (
-        <div className="flex flex-col items-center gap-2 text-center text-xl text-blue-500">
-          <RiDragDropLine size={60} />
-          <p className="font-bold">Drop your backup file here (.zip)</p>
-        </div>
-      )}
-      {error && <p className="mt-4 text-red-500">{error}</p>}
+    <div className="w-full px-4">
+      <div
+        {...getRootProps()}
+        className={clsx(
+          "flex h-auto min-h-[300px] w-full max-w-[600px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 bg-white/30 transition-colors",
+          { "bg-blue-400/20": isHovered },
+        )}
+      >
+        <input {...getInputProps()} />
+        {file ? (
+          <div className="flex flex-col">
+            <p>
+              Your file : <strong>{file.name}</strong>
+            </p>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center gap-2 px-2 text-center text-xl text-blue-500">
+            <RiDragDropLine size={60} />
+            <p className="font-bold">Drop your backup file here (.zip)</p>
+          </div>
+        )}
+        {error && <p className="mt-4 text-red-500">{error}</p>}
+      </div>
     </div>
   );
 };

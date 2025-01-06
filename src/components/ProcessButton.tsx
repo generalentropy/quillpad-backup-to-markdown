@@ -7,24 +7,35 @@ import { generateMarkdownFiles } from "../services/generateMarkdownFiles";
 import { generateArchive } from "../services/generateArchive";
 
 export default function ProcessButton() {
+  const [error, setError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const file = useFileStore((state) => state.file);
   const sortByFolders = useFileStore((state) => state.sortByNotebookName);
 
   const handleClick = async () => {
+    setError(""); // Clear previous errors
     setIsProcessing(true);
-    if (!file) return;
-
-    const { data } = await extractZip(file);
-    const mdNotesArray = generateMarkdownFiles(data);
-
-    await generateArchive(mdNotesArray, data.notebooks, sortByFolders);
-
-    setIsProcessing(false);
+    try {
+      if (!file) {
+        setError("No file selected");
+        return;
+      }
+      const { data } = await extractZip(file);
+      const mdNotesArray = generateMarkdownFiles(data);
+      await generateArchive(mdNotesArray, data.notebooks, sortByFolders);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
-    <div className="my-6">
+    <div className="my-6 text-center">
       <button
         disabled={isProcessing}
         onClick={handleClick}
@@ -37,6 +48,8 @@ export default function ProcessButton() {
         )}
         <span>Convert and download</span>
       </button>
+
+      <p className="my-4 h-8 text-red-700">{error && `Error: ${error}`}</p>
     </div>
   );
 }
