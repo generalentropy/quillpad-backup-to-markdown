@@ -5,7 +5,6 @@ import { RiDragDropLine } from "react-icons/ri";
 import clsx from "clsx";
 
 const FileDropZone: React.FC = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const setFile = useFileStore((state) => state.setFile);
 
   const file = useFileStore((state) => state.file);
@@ -14,9 +13,9 @@ const FileDropZone: React.FC = () => {
   const options: DropzoneOptions = {
     accept: { "application/zip": [".zip"] },
     maxFiles: 1,
+
     onDrop: (acceptedFiles, fileRejections) => {
       setError(null);
-      setIsHovered(false);
 
       if (fileRejections.length > 0) {
         setError("Wrong format, only ZIP files are accepted.");
@@ -25,19 +24,17 @@ const FileDropZone: React.FC = () => {
 
       setFile(acceptedFiles[0]);
     },
-    onDragEnter: () => setIsHovered(true),
-    onDragLeave: () => setIsHovered(false),
   };
 
-  const { getRootProps, getInputProps } = useDropzone(options);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
 
   return (
     <div className="w-full px-4">
       <div
         {...getRootProps()}
         className={clsx(
-          "flex h-auto min-h-[300px] w-full max-w-[600px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 bg-white/30 transition-colors",
-          { "bg-blue-400/20": isHovered },
+          "flex h-auto min-h-[300px] w-full max-w-[600px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 transition-colors",
+          { "bg-blue-600/20": isDragActive, "bg-white/30": !isDragActive },
         )}
       >
         <input {...getInputProps()} />
