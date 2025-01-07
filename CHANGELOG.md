@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/generalentropy/quillpad-backup-to-markdown/compare/v1.1.0...v1.1.1) (2025-01-07)
+
+
+### Bug Fixes
+
+* update background color on hover using isDragActive ([4e56466](https://github.com/generalentropy/quillpad-backup-to-markdown/commit/4e56466f3d7e73242aa9ba7cdc5598608761476f))
+
 ## [1.1.0](https://github.com/generalentropy/quillpad-backup-to-markdown/compare/v1.0.0...v1.1.0) (2025-01-07)
 
 
