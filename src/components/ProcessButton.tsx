@@ -20,9 +20,14 @@ export default function ProcessButton() {
         setError("No file selected");
         return;
       }
-      const { data } = await extractZip(file);
+      const { data, mediaFiles } = await extractZip(file);
       const mdNotesArray = generateMarkdownFiles(data);
-      await generateArchive(mdNotesArray, data.notebooks, sortByFolders);
+      await generateArchive(
+        mdNotesArray,
+        mediaFiles,
+        data.notebooks,
+        sortByFolders,
+      );
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);

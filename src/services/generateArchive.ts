@@ -4,15 +4,18 @@ import { v4 as uuidv4 } from "uuid";
 import { getFormattedDate } from "../utils/helpers";
 
 /**
- * Create a ZIP file from a list of Markdown files, optionally organizing them into folders based on notebooks.
+ * Create a ZIP file from a list of Markdown files and media files, optionally organizing them into folders based on notebooks.
  *
  * @param {TextFile[]} markdownFiles - An array of objects with filename, content, and optionally notebookId.
+ * @param {Map<string, Blob>} mediaFiles - A Map of media files (name -> Blob) to include in the "media" folder.
  * @param {Notebook[]} [notebooks] - An array of notebooks to organize files into folders. Required if includeFolders is true.
  * @param {boolean} [includeFolders=false] - Whether to organize files into folders based on notebooks.
  * @returns {Promise<void>} - A promise that resolves when the ZIP file is downloaded.
  */
+
 export async function generateArchive(
   markdownFiles: TextFile[],
+  mediaFiles: Map<string, Blob>,
   notebooks?: Notebook[],
   includeFolders: boolean = false,
 ): Promise<void> {
@@ -35,6 +38,12 @@ export async function generateArchive(
     // Add each Markdown file to the root of the ZIP
     markdownFiles.forEach(({ name, content }) => {
       zip.file(name, content);
+    });
+  }
+
+  if (mediaFiles && mediaFiles.size > 0) {
+    mediaFiles.forEach((blob, filePath) => {
+      zip.file(filePath, blob);
     });
   }
 
