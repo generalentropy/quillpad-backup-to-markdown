@@ -1,8 +1,12 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [1.1.0] - 2025-01-07
 
-## [Unreleased]
+### Added
+
+- Add option to remove media files and include only notes.
+
+## [1.0.0] - 2025-01-06
 
 ### Added
 
@@ -11,9 +15,3 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Fixed the bug causing duplication of the "media" folder.
-
-## [1.0.0] - 2025-01-07
-
-### Added
-
-- Project initialization with basic features.

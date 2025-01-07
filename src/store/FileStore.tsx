@@ -7,4 +7,6 @@ export const useFileStore = create<FileStore>((set) => ({
   sortByNotebookName: false,
   setSortByNotebookName: () =>
     set((state) => ({ sortByNotebookName: !state.sortByNotebookName })),
+  removeMedia: false,
+  setRemoveMedia: () => set((state) => ({ removeMedia: !state.removeMedia })),
 }));

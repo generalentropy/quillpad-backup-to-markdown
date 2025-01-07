@@ -2,17 +2,19 @@ import JSZip from "jszip";
 import { Data } from "../types/types";
 
 /**
- * Extracts a JSON file and "media" folder from a ZIP archive.
+ * Extracts a JSON file and optionally the "media" folder from a ZIP archive.
  * - Parses and returns the JSON content (notes and notebooks).
- * - Returns the files in the "media" folder.
+ * - Returns the files in the "media" folder only if `includeMedia` is true.
  *
  * @param {File | Blob} zipFile - The ZIP file to process.
+ * @param {boolean} includeMedia - Flag to determine whether to extract media files.
  * @returns {Promise<{ data: Data; mediaFiles: Map<string, Blob> }>}
  *   - `data`: The parsed JSON data containing notes and notebooks.
- *   - `mediaFiles`: A Map of files from the "media" folder (name -> Blob).
+ *   - `mediaFiles`: A Map of files from the "media" folder (name -> Blob) if `includeMedia` is true; otherwise, an empty Map.
  */
 export async function extractZip(
   zipFile: File,
+  removeMedia: boolean,
 ): Promise<{ data: Data; mediaFiles: Map<string, Blob> }> {
   const zip = new JSZip();
 
@@ -28,7 +30,7 @@ export async function extractZip(
       if (fileName.endsWith(".json")) {
         const jsonString = await fileData.async("string");
         data = JSON.parse(jsonString) as Data;
-      } else if (fileName.startsWith("media/")) {
+      } else if (!removeMedia && fileName.startsWith("media/")) {
         const fileBlob = await fileData.async("blob");
         mediaFiles.set(fileName, fileBlob);
       }

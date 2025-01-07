@@ -16,6 +16,7 @@ import { getFormattedDate } from "../utils/helpers";
 export async function generateArchive(
   markdownFiles: TextFile[],
   mediaFiles: Map<string, Blob>,
+  removeMedia: boolean,
   notebooks?: Notebook[],
   includeFolders: boolean = false,
 ): Promise<void> {
@@ -41,7 +42,7 @@ export async function generateArchive(
     });
   }
 
-  if (mediaFiles && mediaFiles.size > 0) {
+  if (!removeMedia && mediaFiles && mediaFiles.size > 0) {
     mediaFiles.forEach((blob, filePath) => {
       zip.file(filePath, blob);
     });

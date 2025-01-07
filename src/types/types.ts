@@ -3,6 +3,8 @@ export interface FileStore {
   setFile: (file: File | null) => void;
   sortByNotebookName: boolean;
   setSortByNotebookName: () => void;
+  removeMedia: boolean;
+  setRemoveMedia: () => void;
 }
 
 export type Attachment = {

@@ -11,20 +11,22 @@ export default function ProcessButton() {
   const [isProcessing, setIsProcessing] = useState(false);
   const file = useFileStore((state) => state.file);
   const sortByFolders = useFileStore((state) => state.sortByNotebookName);
+  const removeMedia = useFileStore((state) => state.removeMedia);
 
   const handleClick = async () => {
-    setError(""); // Clear previous errors
+    setError("");
     setIsProcessing(true);
     try {
       if (!file) {
         setError("No file selected");
         return;
       }
-      const { data, mediaFiles } = await extractZip(file);
+      const { data, mediaFiles } = await extractZip(file, removeMedia);
       const mdNotesArray = generateMarkdownFiles(data);
       await generateArchive(
         mdNotesArray,
         mediaFiles,
+        removeMedia,
         data.notebooks,
         sortByFolders,
       );
