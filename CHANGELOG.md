@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/generalentropy/quillpad-backup-to-markdown/compare/v1.1.1...v1.1.2) (2025-01-11)
+
+
+### Bug Fixes
+
+* **ui:** minor interface improvements ([cbd4d7c](https://github.com/generalentropy/quillpad-backup-to-markdown/commit/cbd4d7cb34a895407385caa7809be0a8f43d7548))
+
 ## [1.1.1](https://github.com/generalentropy/quillpad-backup-to-markdown/compare/v1.1.0...v1.1.1) (2025-01-07)
 
 
