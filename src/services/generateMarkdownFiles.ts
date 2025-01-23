@@ -37,8 +37,8 @@ export function generateMarkdownFiles(data: Data) {
 
 **Notebook:** ${notebookName}
 
-## Content
-${note.content || "No content"}
+
+${note?.content ?? ""}
 
 ## Attachments
 ${attachments || "No attachments"}

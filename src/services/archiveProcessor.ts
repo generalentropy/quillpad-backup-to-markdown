@@ -7,7 +7,7 @@ import { Data } from "../types/types";
  * - Returns the files in the "media" folder only if `includeMedia` is true.
  *
  * @param {File | Blob} zipFile - The ZIP file to process.
- * @param {boolean} includeMedia - Flag to determine whether to extract media files.
+ * @param {boolean} removeMedia - Flag to determine whether to extract media files.
  * @returns {Promise<{ data: Data; mediaFiles: Map<string, Blob> }>}
  *   - `data`: The parsed JSON data containing notes and notebooks.
  *   - `mediaFiles`: A Map of files from the "media" folder (name -> Blob) if `includeMedia` is true; otherwise, an empty Map.
