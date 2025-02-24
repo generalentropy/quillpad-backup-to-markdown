@@ -3,7 +3,6 @@ import { Data } from "../types/types";
 
 /**
  * Generate Markdown files from notes.
- *
  * @param {Object} data - The JSON object containing notes and notebooks.
  * @returns {Array<{ name: string, content: string, notebookId: number | null }>}
  *   An array of objects with the filename and content for each note.
