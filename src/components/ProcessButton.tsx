@@ -13,6 +13,8 @@ export default function ProcessButton() {
   const sortByFolders = useFileStore((state) => state.sortByNotebookName);
   const removeMedia = useFileStore((state) => state.removeMedia);
 
+  const isFileLoaded = file !== null;
+
   const handleClick = async () => {
     setError("");
     setIsProcessing(true);
@@ -41,12 +43,12 @@ export default function ProcessButton() {
     }
   };
 
-  return (
+  return isFileLoaded ? (
     <div className="my-6 text-center">
       <button
-        disabled={isProcessing}
+        disabled={isProcessing || !isFileLoaded}
         onClick={handleClick}
-        className="inline-flex items-center rounded-lg bg-blue-600 px-6 py-4 font-bold text-blue-200 transition-colors hover:bg-blue-500 hover:text-blue-100"
+        className="inline-flex items-center rounded-lg bg-blue-600 px-6 py-4 font-bold text-blue-200 transition-colors hover:bg-blue-500 hover:text-blue-100 disabled:cursor-not-allowed disabled:bg-blue-400 disabled:opacity-50 disabled:hover:bg-blue-400"
       >
         {isProcessing ? (
           <RiLoader4Fill className="mx-2 animate-spin" size={25} />
@@ -58,5 +60,5 @@ export default function ProcessButton() {
 
       <p className="my-4 h-8 text-red-700">{error && `Error: ${error}`}</p>
     </div>
-  );
+  ) : null;
 }
