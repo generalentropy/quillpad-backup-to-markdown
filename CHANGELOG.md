@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/generalentropy/quillpad-backup-to-markdown/compare/v1.1.3...v1.1.4) (2025-05-08)
+
+
+### Bug Fixes
+
+* **ui:** hide convert/download button when no zip loaded and disable it during processing ([aa11f23](https://github.com/generalentropy/quillpad-backup-to-markdown/commit/aa11f234f2caafe78845698afc8994d5f6a0c93d))
+
 ## [1.1.3](https://github.com/generalentropy/quillpad-backup-to-markdown/compare/v1.1.2...v1.1.3) (2025-05-08)
 
 
