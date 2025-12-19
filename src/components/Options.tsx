@@ -1,5 +1,38 @@
 import { useFileStore } from "../store/FileStore";
 
+type ToggleProps = {
+  checked: boolean;
+  onChange: () => void;
+  title: string;
+  description?: string;
+};
+
+function Toggle({ checked, onChange, title, description }: ToggleProps) {
+  return (
+    <label className="flex cursor-pointer items-start justify-between gap-4 py-3">
+      <span className="flex flex-col">
+        <span className="text-sm font-semibold text-blue-950">{title}</span>
+        {description ? (
+          <span className="mt-1 text-sm font-normal text-blue-900/70">
+            {description}
+          </span>
+        ) : null}
+      </span>
+
+      <span className="relative mt-0.5 inline-flex items-center">
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          className="peer sr-only"
+        />
+        <span className="h-6 w-11 rounded-full bg-blue-950/20 transition-colors peer-checked:bg-blue-600 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600" />
+        <span className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5" />
+      </span>
+    </label>
+  );
+}
+
 export default function Options() {
   const sortByNotebookName = useFileStore((state) => state.sortByNotebookName);
   const setSortByNotebookName = useFileStore(
@@ -15,35 +48,33 @@ export default function Options() {
   );
 
   return (
-    <div className="mt-4 flex w-full select-none flex-col justify-center gap-1 border font-semibold text-gray-600">
-      <p className="text-xl font-bold text-gray-800"> Options</p>
-      <label className="cursor-pointer">
-        <input
-          type="checkbox"
+    <div className="mt-4 w-full max-w-[632px] rounded-2xl border border-blue-950/10 bg-white/40 p-4 shadow-sm backdrop-blur">
+      <div className="mb-2 flex items-center justify-between">
+        <p className="text-lg font-bold tracking-tight text-blue-950">
+          Options
+        </p>
+      </div>
+
+      <div className="divide-y divide-blue-950/10">
+        <Toggle
           checked={sortByNotebookName}
           onChange={setSortByNotebookName}
-          className="mx-2 cursor-pointer"
+          title="Organize notes into folders"
+          description="Create a separate folder for each notebook."
         />
-        Create a separate folder for each notebook in Quillpad&nbsp;?
-      </label>
-      <label className="cursor-pointer">
-        <input
-          type="checkbox"
+        <Toggle
           checked={removeMedia}
           onChange={setRemoveMedia}
-          className="mx-2 cursor-pointer"
+          title="Exclude media files"
+          description="Only export notes (no attachments in the ZIP)."
         />
-        Remove media files and include only notes.
-      </label>
-      <label className="cursor-pointer">
-        <input
-          type="checkbox"
+        <Toggle
           checked={displayImagesInline}
           onChange={setDisplayImagesInline}
-          className="mx-2 cursor-pointer"
+          title="Show attached images inline"
+          description="Render image attachments as images in the Attachments section (not links)."
         />
-        Display image attachments inline in Markdown.
-      </label>
+      </div>
     </div>
   );
 }
