@@ -1,6 +1,36 @@
 import { v4 as uuidv4 } from "uuid";
 import { Data } from "../types/types";
 
+function normalizeAttachmentHref(
+  fileName: string,
+  options: { includeFolders: boolean },
+): string {
+  // If it's already a path/URL, keep it as-is (except media path adjustment for folders)
+  if (
+    fileName.startsWith("http://") ||
+    fileName.startsWith("https://") ||
+    fileName.startsWith("data:") ||
+    fileName.startsWith("blob:")
+  ) {
+    return fileName;
+  }
+
+  // If export already stored "media/..." in JSON, keep it, but adjust relative path
+  if (fileName.startsWith("media/")) {
+    return options.includeFolders ? `../${fileName}` : fileName;
+  }
+  if (fileName.startsWith("./media/")) {
+    const cleaned = fileName.slice(2); // remove "./"
+    return options.includeFolders ? `../${cleaned}` : cleaned;
+  }
+  if (fileName.startsWith("../media/")) {
+    return fileName;
+  }
+
+  // Default: media files are stored under "media/" in the output zip
+  return options.includeFolders ? `../media/${fileName}` : `media/${fileName}`;
+}
+
 function isImageAttachment(att: { type?: string; fileName?: string }): boolean {
   if (att.type && att.type.startsWith("image/")) return true;
 
@@ -27,10 +57,11 @@ function isImageAttachment(att: { type?: string; fileName?: string }): boolean {
  */
 export function generateMarkdownFiles(
   data: Data,
-  options?: { displayImagesInline?: boolean },
+  options?: { displayImagesInline?: boolean; includeFolders?: boolean },
 ) {
   const { notes, notebooks } = data;
   const displayImagesInline = options?.displayImagesInline ?? false;
+  const includeFolders = options?.includeFolders ?? false;
 
   const titleCounts: Record<string, number> = {};
 
@@ -53,7 +84,9 @@ export function generateMarkdownFiles(
         ? attachments
             .map((att) => {
               const label = att.description ?? att.fileName;
-              const href = att.fileName;
+              const href = normalizeAttachmentHref(att.fileName, {
+                includeFolders,
+              });
 
               if (displayImagesInline && isImageAttachment(att)) {
                 // No list dash for images, so they render cleanly inline in most viewers.

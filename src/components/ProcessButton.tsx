@@ -27,7 +27,10 @@ export default function ProcessButton() {
         return;
       }
       const { data, mediaFiles } = await extractZip(file, removeMedia);
-      const mdNotesArray = generateMarkdownFiles(data, { displayImagesInline });
+      const mdNotesArray = generateMarkdownFiles(data, {
+        displayImagesInline,
+        includeFolders: sortByFolders,
+      });
       await generateArchive(
         mdNotesArray,
         mediaFiles,
