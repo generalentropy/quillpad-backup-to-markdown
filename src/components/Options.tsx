@@ -7,6 +7,12 @@ export default function Options() {
   );
   const setRemoveMedia = useFileStore((state) => state.setRemoveMedia);
   const removeMedia = useFileStore((state) => state.removeMedia);
+  const displayImagesInline = useFileStore(
+    (state) => state.displayImagesInline,
+  );
+  const setDisplayImagesInline = useFileStore(
+    (state) => state.setDisplayImagesInline,
+  );
 
   return (
     <div className="mt-4 flex w-full select-none flex-col justify-center gap-1 border font-semibold text-gray-600">
@@ -28,6 +34,15 @@ export default function Options() {
           className="mx-2 cursor-pointer"
         />
         Remove media files and include only notes.
+      </label>
+      <label className="cursor-pointer">
+        <input
+          type="checkbox"
+          checked={displayImagesInline}
+          onChange={setDisplayImagesInline}
+          className="mx-2 cursor-pointer"
+        />
+        Display image attachments inline in Markdown.
       </label>
     </div>
   );

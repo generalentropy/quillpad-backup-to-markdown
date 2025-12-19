@@ -5,11 +5,13 @@ export interface FileStore {
   setSortByNotebookName: () => void;
   removeMedia: boolean;
   setRemoveMedia: () => void;
+  displayImagesInline: boolean;
+  setDisplayImagesInline: () => void;
 }
 
 export type Attachment = {
   type: string;
-  description: string;
+  description?: string;
   fileName: string;
 };
 

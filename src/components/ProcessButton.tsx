@@ -12,6 +12,9 @@ export default function ProcessButton() {
   const file = useFileStore((state) => state.file);
   const sortByFolders = useFileStore((state) => state.sortByNotebookName);
   const removeMedia = useFileStore((state) => state.removeMedia);
+  const displayImagesInline = useFileStore(
+    (state) => state.displayImagesInline,
+  );
 
   const isFileLoaded = file !== null;
 
@@ -24,7 +27,7 @@ export default function ProcessButton() {
         return;
       }
       const { data, mediaFiles } = await extractZip(file, removeMedia);
-      const mdNotesArray = generateMarkdownFiles(data);
+      const mdNotesArray = generateMarkdownFiles(data, { displayImagesInline });
       await generateArchive(
         mdNotesArray,
         mediaFiles,
