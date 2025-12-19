@@ -10,9 +10,9 @@ export default function Info() {
         <FaLongArrowAltRight size={30} className="mx-6" />
         <AiFillFileMarkdown />
       </div>
-      <div className="mx-4 my-6 flex max-w-[600px] items-center rounded-lg border border-emerald-400 bg-emerald-300/50 p-4 text-emerald-700">
+      <div className="my-6 flex max-w-[600px] items-center rounded-lg border border-emerald-400 bg-emerald-300/50 p-4 text-emerald-700 md:p-6">
         <FaLock size={40} className="mx-4 hidden sm:block" />
-        <p className="px-4 text-start">
+        <p className="ptext-start">
           The conversion is processed directly in your browser, ensuring that
           your data never leaves your device
         </p>

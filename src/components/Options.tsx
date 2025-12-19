@@ -9,7 +9,8 @@ export default function Options() {
   const removeMedia = useFileStore((state) => state.removeMedia);
 
   return (
-    <div className="mt-4 flex select-none flex-col justify-center gap-1 px-1 font-semibold text-gray-600">
+    <div className="mt-4 flex w-full select-none flex-col justify-center gap-1 border font-semibold text-gray-600">
+      <p className="text-xl font-bold text-gray-800"> Options</p>
       <label className="cursor-pointer">
         <input
           type="checkbox"
@@ -19,7 +20,6 @@ export default function Options() {
         />
         Create a separate folder for each notebook in Quillpad&nbsp;?
       </label>
-
       <label className="cursor-pointer">
         <input
           type="checkbox"

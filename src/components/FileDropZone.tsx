@@ -29,11 +29,11 @@ const FileDropZone: React.FC = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full">
       <div
         {...getRootProps()}
         className={clsx(
-          "flex h-auto min-h-[300px] w-full max-w-[600px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 transition-colors",
+          "flex h-auto min-h-[300px] w-full max-w-[632px] cursor-pointer flex-col items-center justify-center rounded-3xl border-4 border-dashed border-blue-500 transition-colors",
           { "bg-blue-600/20": isDragActive, "bg-white/30": !isDragActive },
         )}
       >
