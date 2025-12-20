@@ -1,16 +1,9 @@
-import { AiFillFileMarkdown } from "react-icons/ai";
-import { FaLock, FaLongArrowAltRight } from "react-icons/fa";
-import { LuFileJson } from "react-icons/lu";
+import { FaLock } from "react-icons/fa";
 
 export default function Info() {
   return (
     <div>
-      <div className="flex items-center justify-center text-7xl text-blue-950">
-        <LuFileJson />
-        <FaLongArrowAltRight size={30} className="mx-6" />
-        <AiFillFileMarkdown />
-      </div>
-      <div className="my-6 flex max-w-[600px] items-center rounded-lg border border-emerald-400 bg-emerald-300/50 p-4 text-emerald-700 md:p-6">
+      <div className="my-6 flex max-w-[600px] items-center rounded-lg border-2 border-dotted border-emerald-400 bg-emerald-300/50 p-4 text-emerald-700 md:p-6">
         <FaLock size={40} className="mx-4 hidden sm:block" />
         <p className="ptext-start">
           The conversion is processed directly in your browser, ensuring that
