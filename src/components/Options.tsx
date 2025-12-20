@@ -48,7 +48,7 @@ export default function Options() {
   );
 
   return (
-    <div className="mt-4 w-full max-w-[632px] rounded-2xl border border-blue-950/10 bg-white/40 p-4 shadow-sm backdrop-blur">
+    <div className="mb-8 mt-4 w-full max-w-[632px] rounded-2xl border border-blue-950/10 bg-white/40 p-4 shadow-sm">
       <div className="mb-2 flex items-center justify-between">
         <p className="text-lg font-bold tracking-tight text-blue-950">
           Options
