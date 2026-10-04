@@ -23,14 +23,15 @@ Easily convert your backups without installing anything by visiting our [online 
 
 #### Prerequisites
 
-- **Node.js:** Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+- **Node.js:** Use Node.js 22.13 or later in the 22.x series, or Node.js 24 or later.
+- **pnpm:** Enable Corepack (`corepack enable`) to use the pnpm version pinned in `package.json`.
 
 #### Installation
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/quillpad-backup-to-markdown.git
+   git clone https://github.com/generalentropy/quillpad-backup-to-markdown.git
    ```
 
 2. **Navigate to the Project Directory:**
@@ -42,7 +43,7 @@ Easily convert your backups without installing anything by visiting our [online 
 3. **Install Dependencies:**
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 #### Running the Application
@@ -50,7 +51,7 @@ Easily convert your backups without installing anything by visiting our [online 
 1. **Start the Development Server:**
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
    This will start the application in development mode. Open [http://localhost:5173/](http://localhost:5173/) in your browser to view it.
@@ -58,7 +59,7 @@ Easily convert your backups without installing anything by visiting our [online 
 2. **Build for Production:**
 
    ```bash
-   npm run build
+   pnpm run build
    ```
 
    This command compiles the application for production, optimizing the build for the best performance.
@@ -66,7 +67,7 @@ Easily convert your backups without installing anything by visiting our [online 
 3. **Preview the Production Build:**
 
    ```bash
-   npm run preview
+   pnpm run preview
    ```
 
    Locally preview the production build to ensure everything works as expected.
@@ -82,6 +83,20 @@ Easily convert your backups without installing anything by visiting our [online 
 
 3. **Access Your Markdown Files:**
    - Once the download is complete, navigate to your designated download folder to find your notes organized as Markdown files in separate folders.
+
+## Verification
+
+Run lint and the browser conversion tests:
+
+```bash
+pnpm run lint
+pnpm exec playwright install chromium
+pnpm test
+```
+
+The tests build the production app and verify uploads, Markdown downloads, notebook folders, attachments, export options, and invalid archives in desktop and mobile Chromium.
+
+Dependency updates observe a seven-day release delay. TypeScript remains on 6.x until `typescript-eslint` supports the TypeScript 7 API.
 
 ## Contributing
 

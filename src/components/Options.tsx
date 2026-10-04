@@ -26,8 +26,8 @@ function Toggle({ checked, onChange, title, description }: ToggleProps) {
           onChange={onChange}
           className="peer sr-only"
         />
-        <span className="h-6 w-11 rounded-full bg-blue-950/20 transition-colors peer-checked:bg-blue-600 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600" />
-        <span className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5" />
+        <span className="h-6 w-11 rounded-full bg-blue-950/20 transition-colors peer-checked:bg-blue-600 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600" />
+        <span className="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-xs transition-transform peer-checked:translate-x-5" />
       </span>
     </label>
   );
@@ -48,7 +48,7 @@ export default function Options() {
   );
 
   return (
-    <div className="mb-8 mt-4 w-full max-w-[632px] rounded-2xl border border-blue-950/10 bg-white/40 p-4 shadow-sm">
+    <div className="mb-8 mt-4 w-full max-w-[632px] rounded-2xl border border-blue-950/10 bg-white/40 p-4 shadow-xs">
       <div className="mb-2 flex items-center justify-between">
         <p className="text-lg font-bold tracking-tight text-blue-950">
           Options
